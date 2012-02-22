@@ -38,7 +38,7 @@ class Brainfuck
 			when ']'
 				if(@mem[@mp] != 0)
 					while (@string[@ip]!='[')
-						@ip+=1
+						@ip-=1
 					end
 				end
 			end
