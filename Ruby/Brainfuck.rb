@@ -31,14 +31,22 @@ class Brainfuck
 				@mem[@mp] = getc
 			when '['
 				if(@mem[@mp] == 0)
-					while (@string[@ip]!=']')
+					count = 0
+					@ip+=1
+					while (@string[@ip]!=']' || count > 0)
+						count +=1 if @string[@ip] == '['
+						count -=1 if @string[@ip] == ']'
 						@ip+=1
 					end
 				end
 			when ']'
 				if(@mem[@mp] != 0)
-					while (@string[@ip]!='[')
-						@ip+=1
+					count = 0
+					@ip-=1
+					while (@string[@ip]!='[' || count > 0)
+						count +=1 if @string[@ip] == ']'
+						count -=1 if @string[@ip] == '['
+						@ip-=1
 					end
 				end
 			end
@@ -47,5 +55,5 @@ class Brainfuck
 	end
 end
 
-$b = Brainfuck.new("++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.")
+$b = Brainfuck.new("++++++++++>>>>>++++++++++<<<<<[>+++++++>++++++++++>+++>+>[-]++++++++++<<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.")
 $b.run
