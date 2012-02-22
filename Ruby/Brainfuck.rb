@@ -41,11 +41,15 @@ class Brainfuck
 				end
 			when ']'
 				if(@mem[@mp] != 0)
+<<<<<<< HEAD
 					count = 0
 					@ip-=1
 					while (@string[@ip]!='[' || count > 0)
 						count +=1 if @string[@ip] == ']'
 						count -=1 if @string[@ip] == '['
+=======
+					while (@string[@ip]!='[')
+>>>>>>> ccc041393249dd8860b314167c30d8eeee248e0e
 						@ip-=1
 					end
 				end
