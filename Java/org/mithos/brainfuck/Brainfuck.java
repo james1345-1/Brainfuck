@@ -65,15 +65,25 @@ public final class Brainfuck implements Runnable{
 					e.printStackTrace();
 				} break;
 			case '[': if(mem[mp] == 0){
-				while(string[ip]!=']') ip++;
+				int count = 1;
+				while(count > 0){
+					ip++;
+					if(string[ip]=='[') count++;
+					if(string[ip]==']') count--;
+				}
 			}break;
 			
 			case ']': if(mem[mp] != 0){
-				while(string[ip]!='[') ip--;
+				int count = 1;
+				while(count > 0){
+					ip--;
+					if(string[ip]=='[') count--;
+					if(string[ip]==']') count++;
+				}
 			}break;
 			}
 			
-			// increment instruction mp
+			// increment instruction pointer
 			ip++;
 			
 		}
