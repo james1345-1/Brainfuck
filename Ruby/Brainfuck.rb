@@ -31,22 +31,21 @@ class Brainfuck
 				@mem[@mp] = getc
 			when '['
 				if(@mem[@mp] == 0)
-					count = 0
-					@ip+=1
-					while (@string[@ip]!=']' || count > 0)
+					count = 1
+					while (count > 0)
+						@ip+=1
 						count +=1 if @string[@ip] == '['
 						count -=1 if @string[@ip] == ']'
-						@ip+=1
+						
 					end
 				end
 			when ']'
 				if(@mem[@mp] != 0)
-					count = 0
-					@ip-=1
-					while (@string[@ip]!='[' || count > 0)
+					count = 1
+					while (count > 0)
+						@ip-=1
 						count +=1 if @string[@ip] == ']'
 						count -=1 if @string[@ip] == '['
-						@ip-=1
 					end
 				end
 			end
